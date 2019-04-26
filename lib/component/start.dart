@@ -79,7 +79,7 @@ class StartCrawlView implements AfterViewInit {
             }
         }
         await this._server.sendRequest(request);
-        // this._initForm();
+        this._initForm();
     }
 
     /// Initialize form controls.

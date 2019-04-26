@@ -129,7 +129,7 @@
       </p>
       <ol *ngIf='policy.urlNormalization.enabled'>
         <li *ngFor='let stripParameter of policy.urlNormalization.stripParameters; let index=index'>
-          <ma-input-group [in-text]='true'>
+          <ma-input-group class='url-normalization'>
             <input type='text'
                    [(ngModel)]='stripParameter.name'
                    placeholder='Query parameter'>
@@ -175,30 +175,30 @@
           <span *ngIf='policy.urlRules.length > 1'>
             <span *ngIf='!last'>
               <span *ngIf='first'>If</span>
-              <span *ngIf='!first'>Else if</span>
+              <span *ngIf='!first'>Or if</span>
               the URL
-              <ma-input-group [in-text]='true'>
+              <ma-input-group class='url-rule'>
                 <select [(ngModel)]='urlRule.match'>
                   <option [ngValue]='MATCHES'>matches</option>
                   <option [ngValue]='DOES_NOT_MATCH'>does not match</option>
                 </select>
               </ma-input-group>
-              <br>the regex
-              <ma-input-group class='regex' [in-text]='true'>
+              the regex
+              <ma-input-group class='url-rule-regex'>
                 <input type='text' [(ngModel)]='urlRule.pattern' placeholder='regex pattern'>
               </ma-input-group>
               <br>then
             </span>
-            <span *ngIf='last'>Else</span>
+            <span *ngIf='last'>Otherwise</span>
           </span>
-          <ma-input-group [in-text]='true'>
+          <ma-input-group class='url-rule'>
             <select [(ngModel)]='urlRule.action'>
               <option [ngValue]='ACTION_ADD'>add</option>
               <option [ngValue]='ACTION_MULTIPLY'>multiply by</option>
             </select>
           </ma-input-group>
           &nbsp;
-          <ma-input-group class='url-amount' [in-text]='true'>
+          <ma-input-group class='url-rule-amount'>
             <input type='text' [(ngModel)]='urlRule.amount'>
           </ma-input-group>
           <span class='edit-buttons'>
@@ -209,14 +209,11 @@
               <fa name='arrow-circle-up'></fa>
             </ma-button>
             <ma-button [disabled]='index == policy.urlRules.length - 2'
-                       *ngIf='!last'
-                       size='small'
+                       *ngIf='!last' class='ml-1' size='small'
                        (click)='moveDown(policy.urlRules, index)'>
               <fa name='arrow-circle-down'></fa>
             </ma-button>
-            <ma-button *ngIf='!last'
-                       size='small'
-                       type='danger'
+            <ma-button *ngIf='!last' class='ml-1' size='small' type='danger'
                        (click)='delete(policy.urlRules, index)'>
               <fa name='trash'></fa>
             </ma-button>
@@ -245,7 +242,7 @@
       </p>
       <ol>
         <li *ngFor='let userAgent of policy.userAgents; let index=index'>
-          <ma-input-group [in-text]='true' class='user-agent'>
+          <ma-input-group class='user-agent'>
             <input type='text'
                    [(ngModel)]='userAgent.name'
                    placeholder='User Agent'>
@@ -288,21 +285,20 @@
             <span *ngIf='first'>If</span>
             <span *ngIf='!first'>Else if</span>
             the URL
-            <ma-input-group [in-text]='true'>
+            <ma-input-group class='proxy-rule'>
               <select [(ngModel)]='proxyRule.match'>
                 <option [ngValue]='MATCHES'>matches</option>
                 <option [ngValue]='DOES_NOT_MATCH'>does not match</option>
               </select>
             </ma-input-group>
-            <br>the regex&nbsp;
-            <ma-input-group class='regex' [in-text]='true'>
+            the regex
+            <ma-input-group class='proxy-rule-regex'>
               <input type='text' [(ngModel)]='proxyRule.pattern' placeholder='regex pattern'>
             </ma-input-group>
             <br>then use the proxy
-            <ma-input-group [in-text]='true'>
+            <ma-input-group class='proxy-rule-url'>
               <input type='text' [(ngModel)]='proxyRule.proxyUrl' placeholder='proxy URL'>
             </ma-input-group>
-            &nbsp;
             <span class='edit-buttons'>
               <ma-button [disabled]='first'
                          size='small'
@@ -310,12 +306,11 @@
                 <fa name='arrow-circle-up'></fa>
               </ma-button>
               <ma-button [disabled]='index == policy.proxyRules.length - 2'
-                         size='small'
+                         class='ml-1' size='small'
                          (click)='moveDown(policy.proxyRules, index)'>
                 <fa name='arrow-circle-down'></fa>
               </ma-button>
-              <ma-button size='small'
-                         type='danger'
+              <ma-button class='ml-1' size='small' type='danger'
                          (click)='delete(policy.proxyRules, index)'>
                 <fa name='trash'></fa>
               </ma-button>
@@ -323,17 +318,17 @@
           </span>
           <span *ngIf='last'>
             <span *ngIf='index > 0'>
-              Else,
+              Otherwise
             </span>
-            <ma-input-group [in-text]='true'>
+            <ma-input-group class='proxy-rule'>
               <select [(ngModel)]='proxyRule.match'>
                 <option [ngValue]='MATCHES'>Always</option>
                 <option [ngValue]='DOES_NOT_MATCH'>Never</option>
               </select>
-            </ma-input-group>&nbsp;
+            </ma-input-group>
             <span *ngIf='proxyRule.match == MATCHES'>
               use the proxy
-              <ma-input-group [in-text]='true'>
+              <ma-input-group class='proxy-rule-url'>
                 <input type='text' [(ngModel)]='proxyRule.proxyUrl' placeholder='proxy URL'>
               </ma-input-group>
             </span>
@@ -365,45 +360,40 @@
           <span *ngIf='policy.mimeTypeRules.length > 1'>
             <span *ngIf='!last'>
               <span *ngIf='first'>If</span>
-              <span *ngIf='!first'>Else if</span>
+              <span *ngIf='!first'>Or if</span>
               the MIME type
-              <ma-input-group [in-text]='true'>
+              <ma-input-group class='mime-rule'>
                 <select [(ngModel)]='mimeRule.match'>
                   <option [ngValue]='MATCHES'>matches</option>
                   <option [ngValue]='DOES_NOT_MATCH'>does not match</option>
                 </select>
               </ma-input-group>
-              <br>the regex
-              <ma-input-group class='regex' [in-text]='true'>
+              the regex
+              <ma-input-group class='mime-rule-regex'>
                 <input type='text' [(ngModel)]='mimeRule.pattern' placeholder='regex pattern'>
               </ma-input-group>
               <br>then
             </span>
-            <span *ngIf='last'>Else</span>
+            <span *ngIf='last'>Otherwise</span>
           </span>
-          <ma-input-group [in-text]='true'>
+          <ma-input-group class='mime-rule'>
             <select [(ngModel)]='mimeRule.save'>
               <option [ngValue]='true'>save</option>
               <option [ngValue]='false'>discard</option>
             </select>
           </ma-input-group>
-          &nbsp;the response body
+          the response body
           <span class='edit-buttons'>
-            <ma-button [disabled]='first'
-                       *ngIf='!last'
-                       size='small'
+            <ma-button [disabled]='first' *ngIf='!last' size='small'
                        (click)='moveUp(policy.mimeTypeRules, index)'>
               <fa name='arrow-circle-up'></fa>
             </ma-button>
             <ma-button [disabled]='index == policy.mimeTypeRules.length - 2'
-                       *ngIf='!last'
-                       size='small'
+                       *ngIf='!last' class='ml-1' size='small'
                        (click)='moveDown(policy.mimeTypeRules, index)'>
               <fa name='arrow-circle-down'></fa>
             </ma-button>
-            <ma-button *ngIf='!last'
-                       size='small'
-                       type='danger'
+            <ma-button class='ml-1' *ngIf='!last' size='small' type='danger'
                        (click)='delete(policy.mimeTypeRules, index)'>
               <fa name='trash'></fa>
             </ma-button>

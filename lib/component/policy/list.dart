@@ -18,7 +18,7 @@ import 'package:starbelly/service/server.dart';
     exports: [Routes],
     pipes: const [commonPipes]
 )
-class PolicyListView implements AfterViewInit {
+class PolicyListView implements OnActivate {
     int currentPage = 1;
     int endRow = 0;
     List<Policy> policies;
@@ -96,17 +96,17 @@ class PolicyListView implements AfterViewInit {
         this.endRow = this.startRow + this.policies.length - 1;
     }
 
-    String policyDetailUrl(Policy policy) {
+    String detailUrl(Policy policy) {
         return Routes.policyDetail.toUrl({'id': policy.policyId});
     }
 
     /// Called when Angular initializes the view.
-    void ngAfterViewInit() {
+    onActivate(_, RouterState current) {
         this.getPage();
     }
 
     /// Called by the pager to select a new page.
-    void selectPage(Page page) {
+    selectPage(Page page) {
         this.currentPage = page.pageNumber;
         this.getPage();
     }

@@ -24,11 +24,42 @@ import 'package:starbelly/service/server.dart';
             text-align: right;
             width: 15em;
         }
-        ma-input-group {
-            max-width: 75%;
+        ma-input-group.url-normalization {
+            display: inline-block;
+            margin-left: 0.5em;
+            width: 20em;
         }
-        ma-input-group.regex {
-            width: 100%;
+        ma-input-group.url-rule, ma-input-group.proxy-rule,
+        ma-input-group.mime-rule {
+            display: inline-block;
+            margin-left: 0.5em;
+            margin-bottom: 0.5em;
+            margin-right: 0.5em;
+            width: 10em;
+        }
+        ma-input-group.url-rule-regex, ma-input-group.proxy-rule-regex,
+        ma-input-group.mime-rule-regex {
+            display: inline-block;
+            margin-left: 0.5em;
+            margin-bottom: 0.5em;
+            width: 20em;
+        }
+        ma-input-group.url-rule-amount {
+            display: inline-block;
+            margin-left: 0.5em;
+            margin-bottom: 0.5em;
+            width: 5em;
+        }
+        ma-input-group.user-agent {
+            display: inline-block;
+            margin-left: 0.5em;
+            width: 85%;
+        }
+        ma-input-group.proxy-rule-url {
+            display: inline-block;
+            margin-left: 0.5em;
+            margin-bottom: 0.5em;
+            width: 20em;
         }
         .metadata-labels {
             text-align: right;

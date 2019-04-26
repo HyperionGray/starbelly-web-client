@@ -39,7 +39,7 @@
       </tr>
       <tr *ngFor="let policy of policies">
         <td>
-          <a [routerLink]='policyDetailUrl(policy)'>
+          <a [routerLink]='detailUrl(policy)'>
             {{policy.name}}
           </a>
         </td>
@@ -51,7 +51,7 @@
             (click)='duplicatePolicy(duplicateButton, policy)'>
             <fa name='copy'></fa>
           </ma-button>
-          <ma-button #deleteButton size='small' type='danger'
+          <ma-button #deleteButton class='ml-1' size='small' type='danger'
             title='Delete'
             (click)='deletePolicy(deleteButton, policy)'>
             <fa name='trash'></fa>
