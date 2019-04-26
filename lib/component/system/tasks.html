@@ -9,16 +9,14 @@
         <p *ngIf='!paused'>
           <ma-button class='mr-1' type='warning' size='small' (click)='pause()'>
             <fa name='pause'></fa>
-            <span>Pause updates</span>
+            <span>Updating every {{period | number}} seconds</span>
           </ma-button>
-          Updating every {{period | number}} seconds.
         </p>
         <p *ngIf='paused'>
           <ma-button class='mr-1' type='success' size='small' (click)='resume()'>
             <fa name='play'></fa>
             <span>Resume updates</span>
           </ma-button>
-          Updates are paused.
         </p>
         <task-tree [task]='rootTask'></task-tree>
       </div>
