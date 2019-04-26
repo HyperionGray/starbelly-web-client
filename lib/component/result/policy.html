@@ -9,7 +9,7 @@
         <p>
           The policy is frozen when a crawl is started, so this crawl's policy
           may differ from the
-          <a [routerLink]='Routes.policyDetail.toUrl({"id":job.policy.policyId})'>current version</a>
+          <a [routerLink]='policyUrl(job)'>current version</a>
           of the policy.
         </p>
         <p>
@@ -29,12 +29,7 @@
             CAPTCHA Solver:
             <span *ngIf='job.policy.captchaSolverId.isEmpty'>None</span>
             <span *ngIf='job.policy.captchaSolverId.isNotEmpty && captchaSolver == null'>
-              <a [routerLink]='Routes.captchaDetail.toUrl({"id":job.policy.captchaSolverId})'>
-                {{job.policy.captchaSolverId}}
-              </a>
-            </span>
-            <span *ngIf='captchaSolver != null'>
-              <a [routerLink]='Routes.captchaDetail.toUrl({"id":job.policy.captchaSolverId})'>
+              <a [routerLink]='captchaUrl(job)'>
                 {{captchaSolver.name}}
               </a>
             </span>

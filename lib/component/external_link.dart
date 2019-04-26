@@ -12,6 +12,11 @@ import 'package:ng_fontawesome/ng_fontawesome.dart';
         :host {
             display: inline;
         }
+        fa {
+            position: relative;
+            top: .05em;
+            margin-left: 0.5em;
+        }
     '''],
     directives: const [coreDirectives, FaIcon]
 )

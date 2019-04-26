@@ -24,7 +24,7 @@ import 'package:starbelly/service/server.dart';
     exports: [Routes],
     pipes: const [commonPipes]
 )
-class ResultDetailView implements OnActivate, OnDestroy {
+class ResultDetailView implements OnActivate, OnDeactivate {
     Job job;
     String tags;
 
@@ -71,8 +71,8 @@ class ResultDetailView implements OnActivate, OnDestroy {
         this._document.breadcrumbs.last.name = this.job.name;
     }
 
-    /// Called when Angular destroys the view.
-    void ngOnDestroy() {
+    /// Called when Angular leaves the route.
+    void onDeactivate(_, RouterState current) {
         this._subscription.cancel();
     }
 
@@ -87,5 +87,21 @@ class ResultDetailView implements OnActivate, OnDestroy {
         if (!message.response.isSuccess) {
             window.alert('Could not save tags!');
         }
+    }
+
+    String successUrl(Job job) {
+        return Routes.resultSuccess.toUrl({"id": job.jobId});
+    }
+
+    String errorUrl(Job job) {
+        return Routes.resultError.toUrl({"id": job.jobId});
+    }
+
+    String exceptionUrl(Job job) {
+        return Routes.resultException.toUrl({"id": job.jobId});
+    }
+
+    String policyUrl(Job job) {
+        return Routes.resultPolicy.toUrl({"id": job.jobId});
     }
 }

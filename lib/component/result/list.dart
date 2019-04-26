@@ -22,7 +22,7 @@ import 'package:starbelly/service/server.dart';
     exports: [Routes],
     pipes: const [commonPipes]
 )
-class ResultListView implements AfterViewInit, OnDestroy {
+class ResultListView implements OnActivate, OnDeactivate {
     int currentPage = 1;
     int endRow = 0;
     List<Job> jobs;
@@ -72,6 +72,10 @@ class ResultListView implements AfterViewInit, OnDestroy {
         button.busy = false;
     }
 
+    String detailUrl(Job job) {
+        return Routes.resultDetail.toUrl({"id": job.jobId});
+    }
+
     /// Fetch current page of results.
     getPage() async {
         var request = new pb.Request()
@@ -92,13 +96,13 @@ class ResultListView implements AfterViewInit, OnDestroy {
         this.endRow = this.startRow + this.jobs.length - 1;
     }
 
-    /// Called when Angular initializes the view.
-    void ngAfterViewInit() {
+    /// Called when Angular enters the route.
+    void onActivate(_, RouterState current) {
         this.getPage();
     }
 
-    /// Called when Angular destroys the view.
-    void ngOnDestroy() {
+    /// Called when Angular leaves the route.
+    void onDeactivate(_, RouterState current) {
         this._subscription.cancel();
     }
 

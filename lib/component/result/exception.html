@@ -35,10 +35,11 @@
           <tr *ngFor="let item of items">
             <td class='exception'>
               <p>
-                <strong>URL:</strong>
                 <external-link [href]='item.url'></external-link>
-                <br><strong>Started At:</strong> {{item.startedAt | date:'y-MM-dd H:mm:ss'}}
-                <br><strong>Duration:</strong> {{item.duration | number:'1.3'}}
+              </p>
+              <p class='font-italic'>
+                Started at {{item.startedAt | date:'y-MM-dd H:mm:ss'}}.
+                {{item.duration | number:'1.3'}} seconds elapsed.
               </p>
               <pre class='exception'>{{item.exception}}</pre>
             </td>

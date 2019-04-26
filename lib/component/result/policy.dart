@@ -68,4 +68,12 @@ class ResultPolicyView implements OnActivate {
             this.captchaSolver = new CaptchaSolver.fromPb(message.response.solver);
         }
     }
+
+    String captchaUrl(Job job) {
+        return Routes.captchaDetail.toUrl({"id": job.policy.captchaSolverId});
+    }
+
+    String policyUrl(Job job) {
+        return Routes.policyDetail.toUrl({"id": job.policy.policyId});
+    }
 }

@@ -37,7 +37,7 @@
       </tr>
       <tr *ngFor="let job of jobs">
         <td>
-          <a [routerLink]='Routes.resultDetail.toUrl({"id":job.jobId})'>{{job.name}}</a>
+          <a [routerLink]='detailUrl(job)'>{{job.name}}</a>
           <ma-tag *ngFor='let tag of job.tags' type='primary' size='small'>{{tag}}</ma-tag>
         </td>
         <td>{{job.runStateStr}}</td>
