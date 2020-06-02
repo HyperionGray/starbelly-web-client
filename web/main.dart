@@ -7,5 +7,5 @@ import 'main.template.dart' as self;
 final InjectorFactory injector = self.injector$Injector;
 
 void main() {
-    runApp(ng.AppComponentNgFactory, createInjector: injector);
+  runApp(ng.AppComponentNgFactory, createInjector: injector);
 }
