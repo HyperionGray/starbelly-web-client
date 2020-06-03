@@ -33,25 +33,24 @@
     <ma-card>
       <h4>Authentication</h4>
       <p class='lead'>
-        The crawler can log in automatically.
+        The crawler can log in automatically if it has credentials for the site.
       </p>
-      <ma-radio-group>
-        <label>
-          Try to log in (if credentials exist):
-        </label>
-        <label title='Always try to log in'>
+      <p>
+        <ma-radio-group>
           <input type='radio'
-                 [checked]='policy.authentication.enabled'
-                 (change)='policy.authentication.enabled=true'>
-          Always
-        </label>
-        <label title='Never try to log in'>
+                name='login'
+                [checked]='policy.authentication.enabled'
+                (change)='policy.authentication.enabled=true'>
+          <label>Try To Login</label>
+        </ma-radio-group>
+        <ma-radio-group>
           <input type='radio'
-                 [checked]='!policy.authentication.enabled'
-                 (change)='policy.authentication.enabled=false'>
-          Never
-        </label>
-      </ma-radio-group>
+                name='login'
+                [checked]='!policy.authentication.enabled'
+                (change)='policy.authentication.enabled=false'>
+          <label>Never Login</label>
+        </ma-radio-group>
+      </p>
       <ma-input-group>
         <label>CAPTCHA Solver</label>
         <select [(ngModel)]='policy.captchaSolverId'>
@@ -69,27 +68,22 @@
       </p>
       <p>
         <ma-radio-group>
-          <label>
-            Robots.txt rules:
-          </label>
-          <label title='Do not follow links that are disallowed by robots.txt'>
-            <input type='radio'
-                   [checked]='policy.robotsTxt.usage == OBEY'
-                   (change)='setRobotsTxtUsage(OBEY)'>
-            Obey
-          </label>
-          <label title='Only follow links that are disallowed by robots.txt'>
-            <input type='radio'
-                   [checked]='policy.robotsTxt.usage == INVERT'
-                   (change)='setRobotsTxtUsage(INVERT)'>
-            Invert
-          </label>
-          <label title="Don't pay attention to robots.txt at all">
-            <input type='radio'
-                   [checked]='policy.robotsTxt.usage == IGNORE'
-                   (change)='setRobotsTxtUsage(IGNORE)'>
-            Ignore
-          </label>
+          <input type='radio'
+                  [checked]='policy.robotsTxt.usage == OBEY'
+                  (change)='setRobotsTxtUsage(OBEY)'>
+          <label>Obey</label>
+        </ma-radio-group>
+        <ma-radio-group>
+          <input type='radio'
+          [checked]='policy.robotsTxt.usage == IGNORE'
+          (change)='setRobotsTxtUsage(IGNORE)'>
+          <label>Ignore</label>
+        </ma-radio-group>
+        <ma-radio-group>
+          <input type='radio'
+                 [checked]='policy.robotsTxt.usage == INVERT'
+                 (change)='setRobotsTxtUsage(INVERT)'>
+          <label>Invert</label>
         </ma-radio-group>
       </p>
     </ma-card>
